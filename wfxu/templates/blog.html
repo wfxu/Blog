@@ -1,0 +1,90 @@
+﻿{% extends "base.html" %}
+{% block mainbody %}
+	<div class="dir">
+	{% block artic %}
+		{% for i in page %}
+			<div id="dir_top" class="artic">
+				<a href="http://127.0.0.1:8000/blog/{{ i.topic }}" name="q">{{ i.topic }}</a>
+				<div style="float:right">
+					<a href="http://127.0.0.1:8000/category/{{ i.classify }}">{{ i.classify }}</a>
+				</div>
+			</div>
+			<div id="dir_mid" class="artic">
+				{{ i.digest|truncatechars:200 }}
+				<a href="http://127.0.0.1:8000/blog/{{ i.topic }}">[阅读全文]</a>
+			</div>
+			<div id="dir_bot" class="artic">
+				<div>{{ i.toptime|date:"SHORT_DATE_FORMAT" }}&nbsp&nbsp&nbsp{{ i.toptime|time:"H:i" }}</div>
+			</div>
+			<hr />
+		{% endfor %}
+		<ul>
+			<li><span>&laquo;</span></li>
+			{% for pg in page_num %}
+				{% if pg == 1 %}
+					<li><a href="http://127.0.0.1:8000/blog" style="color:red;">{{ pg }}</a></li>
+				{% else %}
+					<li><a href="http://127.0.0.1:8000/blog/page/{{ pg }}">{{ pg }}</a></li>
+				{% endif %}
+			{% endfor %}
+			<li><a href="http://127.0.0.1:8000/blog/page/{{ pages|add:'1' }}"><span>&raquo;</span></a></li>
+		</ul>
+	{% endblock %}
+	</div>
+	<div class="sidebar">
+		<div>
+			<form action="" method="get">
+				<input name="search" type="text" style="height:25px;" />
+				<input value="搜索" type="submit" style="height:30px;width:50px;" />
+			</form>
+		</div>
+		<fieldset>
+			<legend> 关于本站 </legend>
+			关注IT,审视自我,守望生活
+			<br>
+			QQ:296604998
+			<br>
+			follow me on twitter
+			<br>
+			follow me on facebook
+			<br>
+			关注我
+			<br>
+			微信
+		</fieldset>
+		<fieldset>
+			<legend> 我的分类 </legend>
+				{% for k in num_category %}
+				<a href="http://127.0.0.1:8000/category/{{ k.classify }}" name="c"> {{ k.classify }} ({{ k.dcount }}) </a>
+				<br>
+				{% endfor %}
+		</fieldset>
+		<fieldset>
+			<legend> 时间线 </legend>
+				{% for m in num_time %}
+				<a href="http://127.0.0.1:8000/time/{{ m.month|slice:"7" }}" name="t">{{ m.month|slice:"7" }} ({{ m.tcount }}) </a>
+				<br>
+				{% endfor %}
+		</fieldset>
+		<fieldset>
+			<legend> 最近热评文章 </legend>
+			<ul>
+				{% for b in rank_blog %}
+				<li><a href="http://127.0.0.1:8000/blog/{{ r }}" name="q">{{ b }}</a></li>
+				{% endfor %}
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend> 最新评论 </legend>
+			<ul>
+				{% for m in rank_mes %}
+				<li><a href="http://127.0.0.1:8000/blog/{{ m.topmes_id }}" name="q">{{ m.topmes_id }}</a>
+					<div style="text-align:right;">
+						第<span style="color:#21759b">{{ m.floor }}</span>只蚂蚁说：{{ m.message }}
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+		</fieldset>
+	</div>
+{% endblock %}

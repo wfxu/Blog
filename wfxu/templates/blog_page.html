@@ -1,0 +1,38 @@
+{% extends "blog.html" %}
+{% block artic %}
+	{% for i in page %}
+		<div id="dir_top" class="artic">
+			<a href="http://127.0.0.1:8000/blog/{{ i.topic }}" name="q">{{ i.topic }}</a>
+			<div style="float:right">
+				<a href="http://127.0.0.1:8000/category/{{ i.classify }}">{{ i.classify }}</a>
+			</div>
+		</div>
+		<div id="dir_mid" class="artic">
+			{{ i.digest|truncatechars:200 }}
+			<a href="http://127.0.0.1:8000/blog/{{ i.topic }}">[阅读全文]</a>
+		</div>
+		<div id="dir_bot" class="artic">
+			<div>{{ i.toptime|date:"SHORT_DATE_FORMAT" }}&nbsp&nbsp&nbsp{{ i.toptime|time:"H:i" }}</div>
+		</div>
+		<hr />
+	{% endfor %}
+	<ul>
+		{% if pages == 1 %}
+			<li><span aria-hidden="true">&laquo;</span></li>
+		{% else %}
+			<li><a href="http://127.0.0.1:8000/blog/page/{{ pages|add:'-1' }}"><span>&laquo;</span></a></li>
+		{% endif %}
+		{% for pg in page_num %}
+			{% if pg == pages %}
+				<li><a href="http://127.0.0.1:8000/blog/page/{{ pg }}" style="color:red;">{{ pg }}</a></li>
+			{% else %}
+				<li><a href="http://127.0.0.1:8000/blog/page/{{ pg }}">{{ pg }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if pages == p.num_pages %}
+			<li><span aria-hidden="true">&raquo;</span></li>
+		{% else %}
+			<li><a href="http://127.0.0.1:8000/blog/page/{{ pages|add:'1' }}"><span>&raquo;</span></a></li>
+		{% endif %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<h1 style="font-size:1.571428571rem;color:#21759b">LOG</h1>
+<div style="Helvetica,Arial,sans-serif;font-size:14px">
+    {% autoescape off %}
+    {% for i in contents %}
+        {{ i.log_content }}
+    {% endfor %}
+    {% endautoescape %}
+</div>
+{% endblock %}
