@@ -3,11 +3,25 @@
 	<head>
 		<meta charset="utf-8" />
 		<title> 欢迎 wfxu !</title>
+
 		{% load static%}
-		{% block style %}
 		<link rel="stylesheet" type="text/css" href="{% static 'wfxu_con.css' %}" >
-		<script src="{% static 'js/home-nav.js' %}"></script>
-		{% endblock %}
+		
+		<script type="text/javascript">	
+		function divshow(){
+		    //点击显示导航
+		    document.getElementById("nav").style.display = "block";
+		    //document.getElementById("click").style.display = "none";
+		    //document.getElementById("click").href = "javascript:divhidden()";
+		}
+		function divhidden(){
+		    //点击隐藏导航
+		    document.getElementById("nav").style.display = "none";
+		    //document.getElementById("click").style.display = "block";
+		    //document.getElementById("click").href = "javascript:divshow()";
+		}
+		</script>
+
 	</head>
 	<body>
 		<div class="page" >
@@ -15,10 +29,10 @@
             <div id="click" onmouseover="divshow()" onmouseout="divhidden()">
                 <div id="nav">
                     <ul>
-                        <li> <a href="http://127.0.0.1:8000/">HOME</a> </li>
-                        <li> <a href="http://127.0.0.1:8000/blog">BLOG </a> </li>
-                        <li> <a href="http://127.0.0.1:8000/log">LOG</a> </li>
-                        <li> <a href="http://127.0.0.1:8000/about">ABOUT</a> </li>
+                        <li> <a href="http://www.wfxxu.wang/">HOME</a> </li>
+                        <li> <a href="http://www.wfxxu.wang/blog">BLOG </a> </li>
+                        <li> <a href="http://www.wfxxu.wang/log">LOG</a> </li>
+                        <li> <a href="http://www.wfxxu.wang/about">ABOUT</a> </li>
                     </ul>
                 </div>
             </div>
@@ -27,8 +41,57 @@
 				{% block mainbody %}
                     <div id="main" style="height:400px;width:700px"></div>
                     {% load static %}
-                    <script src="{% static 'js/build/dist/echarts.js' %}"></script>
-                    <script src="{% static 'js/home.js' %}"></script>
+		    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+                   <script type="text/javascript">
+		// 路径配置
+		require.config({
+		    paths: {
+			echarts: 'http://echarts.baidu.com/build/dist'
+		    }
+		});
+		
+		// 使用
+		require(
+		    [
+			'echarts',
+			'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+		    ],
+		    function (ec) {
+			// 基于准备好的dom，初始化echarts图表
+			var myChart = ec.init(document.getElementById('main')); 
+			
+			var option = {
+			    tooltip: {
+				show: true
+			    },
+			    legend: {
+				data:['销量']
+			    },
+			    xAxis : [
+				{
+				    type : 'category',
+				    data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+				}
+			    ],
+			    yAxis : [
+				{
+				    type : 'value'
+				}
+			    ],
+			    series : [
+				{
+				    "name":"销量",
+				    "type":"bar",
+				    "data":[5, 20, 40, 10, 10, 20]
+				}
+			    ]
+			};
+		
+			// 为echarts对象加载数据 
+			myChart.setOption(option); 
+		    }
+		);
+	    </script>
 				{% endblock %}
 			</div>
 		</div>

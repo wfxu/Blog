@@ -2,7 +2,7 @@
 * {margin:0;padding:0;list-style-type:none;}
 a,img {border:0;}
 body {font:12px/180% Arial, Helvetica, sans-serif, "微软雅黑";}
-#click {position:absolute;z-index:1;left:0;height:100%;width:2px;}
+#click {position:absolute;z-index:1;left:0;height:100%;width:20px;}
 #nav {float:left;left:0;position:absolute;z-index:1;display:none;}
 #nav ul{width:200px;padding:60px 0 60px 0;background:url() no-repeat;}
 #nav ul li{margin:5px 0 0 0;}

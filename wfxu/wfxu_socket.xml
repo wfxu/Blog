@@ -1,0 +1,7 @@
+<uwsgi>
+	<socket>:8080</socket>
+	<chdir>/home/ubuntu/project/Blog/wfxu</chdir>
+	<module>wfxu_wsgi</module>
+	<processes>4</processes>
+	<daemonize>uwsgi.log</daemonize>
+</uwsgi>

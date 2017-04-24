@@ -23,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's1m6q+6d=7g^6!8y1kk4qjg=+z1_rpflrx$di#jtq34mb5u@^x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True;
 
-ALLOWED_HOSTS = [u'127.0.0.1']
+ALLOWED_HOSTS = [u'127.0.0.1',
+u'119.29.94.187',
+u'www.wfxxu.wang'
+]
 
 
 # Application definition
@@ -38,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Model',
-    'tinymce',
-    'ckeditor',
     'DjangoUeditor',
 ]
 
@@ -121,10 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
+STATIC_ROOT = '/home/ubuntu/project/Blog/wfxu/static/'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR,"static"),]
 
-MEDIA_URL = '/media/'
+MEDIAA_URL = '/media/'
 MEDIAFILES_DIRS = [os.path.join(BASE_DIR,"media"),]
 
-DUOSHUO_SECRET = 'fe0f03d6792e69bf4b206576e9df3dc5'
-DUOSHUO_SHORT_NAME = 'wfxxu'
+

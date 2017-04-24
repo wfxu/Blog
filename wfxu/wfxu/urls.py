@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from . import home, message, blog
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,4 +30,4 @@ urlpatterns = [
     url(r'^category/(.+)$', blog.blog_category),
     url(r'^time/(.+)$', blog.blog_time),
     url(r'^search$', blog.blog_search),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
